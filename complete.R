@@ -17,17 +17,9 @@ complete <- function(directory, id = 1:332) {
   nobs <- integer(0)
 
   for(i in id) {
-    if (i < 10) {
-      fileindex <- paste("00",i,sep="")
-    }
-    else if (i < 100) {
-      fileindex <- paste("0", i, sep="")
-    }
-    else {
-      fileindex <- i
-    }
+
+    filename <- paste(directory, "/", formatC(i, width=3, flag="0"), ".csv", sep ="")
     
-    filename <- paste(directory, "/", fileindex, ".csv", sep ="")
     data <-read.csv(filename)
     
     sum_ok <- sum(complete.cases(data))

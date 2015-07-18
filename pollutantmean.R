@@ -16,17 +16,8 @@ pollutantmean <- function(directory, pollutant, id = 1:332) {
         values <- numeric(0)
   
         for(i in id) {
-          if (i < 10) {
-            fileindex <- paste("00",i,sep="")
-          }
-          else if (i < 100) {
-            fileindex <- paste("0", i, sep="")
-          }
-          else {
-            fileindex <- i
-          }
+          filename <- paste(directory, "/", formatC(i, width=3, flag="0"), ".csv", sep ="")
   
-          filename <- paste(directory, "/", fileindex, ".csv", sep ="")
         	data <-read.csv(filename)
         	values <- c(values, data[[pollutant]])
         }
